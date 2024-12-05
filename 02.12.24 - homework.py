@@ -1,6 +1,6 @@
 # class exercise
 #
-#
+# 2222
 # if __name__ == '__main__':
 #     global total_payment
 #     total_payment = 0
