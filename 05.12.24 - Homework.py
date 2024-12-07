@@ -318,11 +318,32 @@ sum = 0# Ex1:
 # Write a function that receives an array of Boolean type.
 # As long as the value is true, the loop should continue, if the value is false, then return
 # the first index of the false value.
-
-array = [True, True , False]
-
-def array_true(array):
-    while array[0]  == True:
-        a
-
-array_true(array)
+#
+# array = [True, True , False, True, True , False]
+#
+# def array_true(array):
+#     i = 0
+#     while i < len(array):
+#         if not array[i]:
+#             return i
+#
+#         i += 1
+#
+# print(array_true(array))
+#-----------------------------
+# Ex10:
+# write a function that receives an array of strings.
+# If the string “Hello” appears and the index is odd then stop the loop and return the
+# index (use only while loop for this).
+#
+# array = ["Hello", "my", "nameis", "Hello", "what"]
+#
+# def string(array):
+#     i = 0
+#     while i < len(array):
+#         if array[i] == "Hello" and i % 2 == 1:
+#             return i
+#
+#         i += 1
+#
+# print(string(array))
