@@ -445,6 +445,9 @@
 #             index += 1
 #
 #     return dupe_list
+from dns.dnssec import validate
+from huggingface_hub import whoami
+
 
 # if __name__ == '__main__':
 #     print(dupes_while(array))
@@ -454,14 +457,13 @@
 # array containing all the values from the provided array in the same order but
 # without any duplicated values. In your solution use only while loops.
 #
-# array = ["apple", "cherry", "apple", "banana", "date", "cherry"]
+# array  = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor', 'Chris', 'Kevin']
 #
 # def no_dupes(array):
 #     index = 0
 #     no_dupe_list = []
 #     while index <= len(array) - 1:
-#         count = array.count(array[index])
-#         if count == 1 and array[index] not in no_dupe_list:
+#         if array[index] not in no_dupe_list:
 #             no_dupe_list.append(array[index])
 #             index += 1
 #         else:
@@ -472,3 +474,130 @@
 # if __name__ == '__main__':
 #     print(no_dupes(array))
 # --------------------------------------------------------------------
+# Ex 19:
+# Write a function that gets an array of strings as parameter and returns a new
+# array containing all the values from the provided array in the same order but
+# without any duplicated values.
+# If the string ‘pete’ is a value inside the array your function should skip it and
+# not copy it to the new array. In your solution use only while loops.
+# For example:
+# names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor', ‘Chris’, ‘Kevin’]
+# Function output should be:
+# ['Chris', 'Kevin', 'Naveed', 'Victor']
+#
+# array  = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor', 'Chris', 'Kevin']
+#
+# def no_dupes_pete(array):
+#     index = 0
+#     no_dupe_pete_list = []
+#     while index <= len(array) - 1:
+#         if array[index] not in no_dupe_pete_list and array[index].lower() != "pete":
+#             no_dupe_pete_list.append(array[index])
+#             index += 1
+#         else:
+#             index += 1
+#
+#     return no_dupe_pete_list
+#
+# if __name__ == '__main__':
+#     print(no_dupes_pete(array))
+#----------------------------------------------------------------------
+# Ex 20:
+# Use a while loop to iterate on a boolean array.
+# As long as the next index is different from the previous index the iteration
+# continues, otherwise, return the index of the element with the same value.
+# If there are not two successive values, the function will return -1.
+# For example:
+# array= [true, false, false, true, true, false] → return 2
+# array= [true, false, true, false, true, true]; → returns 5
+# array= [true, false, true, false, true, false]; → returns -1
+#
+# array = [True, False, True, False, True, False]
+#
+# def same_value(array):
+#     index = 0
+#     while index <= len(array) - 1:
+#         if array[index] == array[index -1] and index != 0:
+#             return index
+#         elif array[index] != array[index -1] or index == 0:
+#             index += 1
+#     return  -1
+#
+# if __name__ == '__main__':
+#     print(same_value(array))
+# ------------------------------------------------------------------
+# Ex 21:
+# Write a python program that gets user input (use input() function for this).
+# The first input will be the user full name
+# Second input will be the user age
+# Third input will be the user email
+# Write validation for each input provided by the user and allow the user to try
+# again in case the user provided invalid input.
+# Validation for full name input → string type with 2 words for first name and last
+# name.
+# Validation for age input → int type between 1 - 130.
+# Validation for email input → string type with ‘@’ inside.
+#
+#
+# def full_name_val():
+#     validation = False
+#     while validation == False:
+#         full_name = input("Whats your full name?: ")
+#         if len(full_name.split(" ")) >= 2:
+#             name_list = full_name.split(" ")
+#             for name in name_list:
+#                 if name != "" and name.isalpha():
+#                     validation = True
+#                 else:
+#                     validation = False
+#                     print("1Make sure your name includes first name and last name with only english letters!")
+#                     break
+#         else:
+#             print("1Make sure your name includes first name and last name with only english letters!")
+#
+#     return full_name
+#
+# def age_val():
+#     validation = False
+#     while validation == False:
+#         age = input("Whats your age?: ")
+#         if age.isdigit():
+#             age = int(age)
+#             if 1 <= age <= 130:
+#                 validation = True
+#             else:
+#                 print("Make sure your age is between 1 and 130")
+#         else:
+#             print("Make sure your input is only digits!")
+#     return age
+#
+# def email_val():
+#     validate = False
+#     while validate == False:
+#         email = input("Whats your email?: ")
+#         if "@" in email:
+#             if len(email.split("@")) == 2:
+#                 if email.split("@")[1].endswith(".com"):
+#                     if email.split("@")[0] != "":
+#                         domain = email.split("@")[1]
+#                         if len(domain.split(".")) == 2 and domain.split(".")[0] != "":
+#                             validate = True
+#                         else:
+#                             print("Invalid Email Address! Make sure there is a domain!")
+#                     else:
+#                         print("Invalid Email Address! Make sure there is a prefix!")
+#
+#                 else:
+#                     print("Invalid Email Address! Make sure there is '.com' at the end!")
+#             else:
+#                 print("Invalid Email Address! Make sure there is only one '@'!")
+#         else:
+#             print("Invalid Email Address! No '@' in address!")
+#     return email
+#
+#
+# if __name__ == '__main__':
+#     full_name_val()
+#     age_val()
+#     print(email_val())
+#
