@@ -38,3 +38,6 @@
 #         elif i % 5 == 0:
 #             print(str(i) + " " + "Buzz")
 # -------------------------------------
+# Ex 5:
+# Write a function that receives an array as a parameter and calculates the sum
+# of all the numbers in the given array (don’t use sum() function).
