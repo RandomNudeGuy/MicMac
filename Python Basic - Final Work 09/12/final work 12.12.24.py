@@ -91,9 +91,9 @@
 #
 #          ]
 #
-# 1 - The function should check for each property in each object in the array if
-# the given property exists and if it does, the function should delete it from the
-# object.
+## 1 - The function should check for each property in each object in the array if
+## the given property exists and if it does, the function should delete it from the
+## object.
 #
 # def delete_property(students_list, property):
 #     for student in students_list:
@@ -102,7 +102,7 @@
 #         else:
 #             continue
 #
-# 2 - Write a function that prints each property of each object in the given array.
+## 2 - Write a function that prints each property of each object in the given array.
 #
 # def print_property(students_list, property):
 #     student_counter = 1
@@ -111,8 +111,8 @@
 #         student_counter += 1
 #
 #
-# 3 - Write a function that sorts the array by the students age from the oldest to
-# the youngest and return the sorted array.
+## 3 - Write a function that sorts the array by the students age from the oldest to
+## the youngest and return the sorted array.
 #
 # def students_age_sort(students_list):
 #     sorted_students_age = []
@@ -153,17 +153,17 @@
 #         }
 # ]
 #
-# 1 - Write a function that receives the array shown above and prints only
-# animalType: cat.
+## 1 - Write a function that receives the array shown above and prints only
+## animalType: cat.
 #
 # def pet_type(pets_list):
 #     for pet in pets_list:
 #         if pet["animal_type"] == "cat":
 #             print("animalType: cat")
 #
-# 2 - Write a function that receives the array shown above and the animal type.
-# The function should print all names of that animal type if this type exists in the
-# object.
+## 2 - Write a function that receives the array shown above and the animal type.
+## The function should print all names of that animal type if this type exists in the
+## object.
 #
 # def pet_names(pets, type):
 #     for pet in pets:
@@ -175,9 +175,9 @@
 #             continue
 #     print("This type of animal is not on our list!")
 #
-# 3 - Write a function that that receives the array shown above and animal name
-# The function should add the specified animal name to each ‘names’ array in
-# each animal_type if that name does not exist in the ‘names’ array.
+## 3 - Write a function that that receives the array shown above and animal name
+## The function should add the specified animal name to each ‘names’ array in
+## each animal_type if that name does not exist in the ‘names’ array.
 #
 # def add_names(pets, name):
 #     for pet in pets:
@@ -282,6 +282,7 @@
 # Write a function to count how many numbers of zeros appear in a 2D matrix
 # using nested for loops and increment operation.
 # print(zero_count(matrix)) → Should print: 5
+#
 # matrix =[
 # [0,1,1],
 # [0,1,0],
@@ -445,10 +446,9 @@
 #             index += 1
 #
 #     return dupe_list
-from dns.dnssec import validate
-from huggingface_hub import whoami
-
-
+#
+#
+#
 # if __name__ == '__main__':
 #     print(dupes_while(array))
 # -------------------------------------------------------------------
