@@ -353,4 +353,122 @@
 # second_array = [8, 1, 9];
 # Function output should be:
 # [12, 7, 16]
+#
+# first_array = [4, 6, 7]
+# second_array = [8, 1, 9]
+#
+# def pairing_add(first_ar, second_ar):
+#     result = []
+#     for i in first_ar:
+#         for x in second_ar:
+#             result.append(i + x)
+#             second_ar.remove(x)
+#             break
+#
+#     return result
+#
+#
+# if __name__ == '__main__':
+#     print(pairing_add(first_array,second_array))
+# ---------------------------------------------------------------------------
+# Ex 14:
+# Write a program that will check if two strings are palindromes.
+# A palindrome is a word that spells the same forward and backward.
+# Palindrome: a word, phrase, or sequence that reads the same backward as
+# forward, examples for valid palindromes: madam, nurses run.
+# For example:
+# first_str = "racecar"
+# second_str = "Java"
+# Function output should be:
+# True (for first_str)
+# False (for second_str)
+#
+# first_str = "racecar"
+# second_str = "Java"
+#
+# def palindrome_check(first_str, second_str):
+#     if first_str == first_str[::-1]:
+#         print(True)
+#     else:
+#         print(False)
+#     if second_str == second_str[::-1]:
+#         print(True)
+#     else:
+#         print(False)
+#
+#
+#
+# if __name__ == '__main__':
+#     palindrome_check(first_str, second_str)
+# ----------------------------------------------------------------------
+# Ex 15:
+# Write a while loop that iterates as long as the counter is less than 100, on
+# every iteration the counter is multiplied by 2 starting from 1.
+#
+#
+# if __name__ == '__main__':
+#     counter = 1
+#     while counter < 100:
+#         print(counter)
+#         counter *= 2
+# -------------------------------------------------------------------
+# Ex 16:
+# Write a while loop that iterates as long as the counter is greater than 50 , on
+# every iteration the counter is divided by 2.
+# The counter should start with the value 900000 before the first iteration.
+#
+#
+#
+# if __name__ == '__main__':
+#     counter = 900000
+#     while counter > 50:
+#         print(counter)
+#         counter /= 2
+#---------------------------------------------------------------------
+# Ex 17:
+# Write a function that gets an array of strings as parameter and returns a new
+# array containing all the values that appear more than once. In your solution
+# use only while loops.
+#
+#
+# array = ["apple", "cherry", "apple", "banana", "date", "cherry"]
+#
+# def dupes_while(array):
+#     index = 0
+#     dupe_list = []
+#     while index <= len(array) - 1:
+#         count = array.count(array[index])
+#         if count > 1 and array[index] not in dupe_list:
+#             dupe_list.append(array[index])
+#             index += 1
+#         else:
+#             index += 1
+#
+#     return dupe_list
 
+# if __name__ == '__main__':
+#     print(dupes_while(array))
+# -------------------------------------------------------------------
+# Ex 18:
+# Write a function that gets an array of strings as parameter and returns a new
+# array containing all the values from the provided array in the same order but
+# without any duplicated values. In your solution use only while loops.
+#
+# array = ["apple", "cherry", "apple", "banana", "date", "cherry"]
+#
+# def no_dupes(array):
+#     index = 0
+#     no_dupe_list = []
+#     while index <= len(array) - 1:
+#         count = array.count(array[index])
+#         if count == 1 and array[index] not in no_dupe_list:
+#             no_dupe_list.append(array[index])
+#             index += 1
+#         else:
+#             index += 1
+#
+#     return no_dupe_list
+#
+# if __name__ == '__main__':
+#     print(no_dupes(array))
+# --------------------------------------------------------------------
