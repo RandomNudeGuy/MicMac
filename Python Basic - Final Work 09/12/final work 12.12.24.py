@@ -91,9 +91,9 @@
 #
 #          ]
 #
-## 1 - The function should check for each property in each object in the array if
-## the given property exists and if it does, the function should delete it from the
-## object.
+# # 1 - The function should check for each property in each object in the array if
+# # the given property exists and if it does, the function should delete it from the
+# # object.
 #
 # def delete_property(students_list, property):
 #     for student in students_list:
@@ -102,7 +102,7 @@
 #         else:
 #             continue
 #
-## 2 - Write a function that prints each property of each object in the given array.
+# # 2 - Write a function that prints each property of each object in the given array.
 #
 # def print_property(students_list, property):
 #     student_counter = 1
@@ -111,8 +111,8 @@
 #         student_counter += 1
 #
 #
-## 3 - Write a function that sorts the array by the students age from the oldest to
-## the youngest and return the sorted array.
+# # 3 - Write a function that sorts the array by the students age from the oldest to
+# # the youngest and return the sorted array.
 #
 # def students_age_sort(students_list):
 #     sorted_students_age = []
@@ -365,9 +365,7 @@
 #             result.append(i + x)
 #             second_ar.remove(x)
 #             break
-#
 #     return result
-#
 #
 # if __name__ == '__main__':
 #     print(pairing_add(first_array,second_array))
@@ -525,6 +523,7 @@
 #
 # if __name__ == '__main__':
 #     print(same_value(array))
+#
 # ------------------------------------------------------------------
 # Ex 21:
 # Write a python program that gets user input (use input() function for this).
