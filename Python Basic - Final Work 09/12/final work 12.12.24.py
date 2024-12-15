@@ -550,10 +550,10 @@
 #                     validation = True
 #                 else:
 #                     validation = False
-#                     print("1Make sure your name includes first name and last name with only english letters!")
+#                     print("Make sure your name includes first name and last name with only english letters!")
 #                     break
 #         else:
-#             print("1Make sure your name includes first name and last name with only english letters!")
+#             print("Make sure your name includes first name and last name with only english letters!")
 #
 #     return full_name
 #
