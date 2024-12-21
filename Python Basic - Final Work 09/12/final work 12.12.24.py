@@ -536,8 +536,8 @@
 # name.
 # Validation for age input → int type between 1 - 130.
 # Validation for email input → string type with ‘@’ inside.
-#
-#
+# 
+# 
 # def full_name_val():
 #     validation = False
 #     while validation == False:
@@ -553,9 +553,9 @@
 #                     break
 #         else:
 #             print("Make sure your name includes first name and last name with only english letters!")
-#
+# 
 #     return full_name
-#
+# 
 # def age_val():
 #     validation = False
 #     while validation == False:
@@ -569,7 +569,7 @@
 #         else:
 #             print("Make sure your input is only digits!")
 #     return age
-#
+# 
 # def email_val():
 #     validate = False
 #     while validate == False:
@@ -585,7 +585,7 @@
 #                             print("Invalid Email Address! Make sure there is a domain!")
 #                     else:
 #                         print("Invalid Email Address! Make sure there is a prefix!")
-#
+# 
 #                 else:
 #                     print("Invalid Email Address! Make sure there is '.com' at the end!")
 #             else:
@@ -593,10 +593,10 @@
 #         else:
 #             print("Invalid Email Address! No '@' in address!")
 #     return email
-#
-#
+# 
+# 
 # if __name__ == '__main__':
 #     full_name_val()
 #     age_val()
-#     print(email_val())
-#
+#     email_val()
+# 
