@@ -106,7 +106,7 @@ def check_win_or_tie(board):
         return "T"
 
 def play_game():
-    board_list = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    board_list = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '] #the board
     symbol_p1 = choose_symbol()
     print(f"\n{p1_name}'s Symbol is: {symbol_p1}")
     if symbol_p1 == 'X':
@@ -127,12 +127,12 @@ def play_game():
 
 def start_game():
     print("Welcome to Tic Tac Toe!")
-    choose_name()
+    choose_name() #name choice
     global game_score
     game_score = [0, 0]
     while True:
         finished_game = play_game()
-        if finished_game:
+        if finished_game:#checks if game is finished or not
             play_again = input("Do you want to play again? Y for yes, everything else for no: ").lower()
             if play_again != "y":
                 break
@@ -162,7 +162,7 @@ def choose_name():
     global p1_name
     global p2_name
     global man_v_machine
-    while True:
+    while True: #name input with checks if letters only
         try:
             p1_name = input("\nPlayer 1 what's your Name? ")
             if not p1_name.isalpha():
@@ -187,7 +187,7 @@ def choose_name():
                     except:
                         print("Make sure the name consists of letters only!")
 
-            elif man_v_machine == 'PC':
+            elif man_v_machine == 'PC':#sets player 1 to play against the PC
                 p2_name = "CPU"
                 break
             else:
