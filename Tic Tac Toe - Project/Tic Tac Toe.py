@@ -9,12 +9,12 @@ def switch_players(turn):
         turn = [True, False]
         return turn
 
-def cpu_choise(board):
+def cpu_choice(board):
     while True:
         index_random = random.randint(1,9)
         for index, value in enumerate(board):
             if index == index_random and value == ' ':
-                return index_random
+                return index_random + 1
 
 def pick_place(board, turn, P1, P2):
     while True:
@@ -24,40 +24,41 @@ def pick_place(board, turn, P1, P2):
             player_turn = p2_name
         elif turn[0] and turn[1] == False:
             player_turn = 'CPU'
-
         try:
             print_board(board)
             while True: #loop to check valid input
-                if (man_v_machine == 'PC') and (player_turn == p2_name):
-                    board[cpu_choise(board)] = P2
+                if (man_v_machine == 'PC') and (turn == [False, True]):
+                    board[cpu_choice(board)] = P2
                     is_win_or_tie = check_win_or_tie(board)
                     turn = switch_players(turn)
                     break
                 try:
                     print(f"\nTurn is: {player_turn}")
-                    chosen_index = int(input("Choose Place 1-9: ")) - 1
+                    chosen_index = int(input("Choose a place 1-9: ")) - 1
                     if 1 <= chosen_index + 1 <= 9:
                         break
                     else:
                         raise Exception("Make sure to only give numbers between 1 - 9!")
                 except Exception as e:
-                    print("\nAn error has occured!")
+                    print("\nAn error has occurred!")
                     print("\nMake sure to only give numbers between 1 - 9!")
-
-            for index, value in enumerate(board):
-                if index == chosen_index and value == ' ':
-                    if player_turn == p1_name:
-                        board[index] = P1
-                        is_win_or_tie = check_win_or_tie(board)
-                        turn = switch_players(turn)
-                    elif player_turn == p2_name:
-                        board[index] = P2
-                        is_win_or_tie = check_win_or_tie(board)
-                        turn = switch_players(turn)
-                elif index == chosen_index and value != ' ':
-                    raise Exception("Place is already Taken!")
+            if (man_v_machine == 'PC') and (turn == [False, True]):
+                continue
+            else:
+                for index, value in enumerate(board):
+                    if index == chosen_index and value == ' ':
+                        if player_turn == p1_name:
+                            board[index] = P1
+                            is_win_or_tie = check_win_or_tie(board)
+                            turn = switch_players(turn)
+                        elif player_turn == p2_name:
+                            board[index] = P2
+                            is_win_or_tie = check_win_or_tie(board)
+                            turn = switch_players(turn)
+                    elif index == chosen_index and value != ' ':
+                        raise Exception("Place is already taken!")
         except Exception as e:
-            print("\nAn error has occured!")
+            print("\nAn error has occurred!")
             print(e)
             print()
         if is_win_or_tie == "W":
@@ -107,7 +108,7 @@ def check_win_or_tie(board):
 def play_game():
     board_list = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     symbol_p1 = choose_symbol()
-    print(f"\n{p1_name} Symbol is: {symbol_p1}")
+    print(f"\n{p1_name}'s Symbol is: {symbol_p1}")
     if symbol_p1 == 'X':
         symbol_p2 = 'O'
         player_turns = [True, False]
@@ -118,10 +119,10 @@ def play_game():
     while True:
         user_choise = pick_place(board_list, player_turns, symbol_p1, symbol_p2)
         if user_choise == "Win":
-            print(f"\n{player_won} Has Won!")
+            print(f"\n{player_won} has Won!")
             return True
         elif user_choise == "Tie":
-            print("Its a Tie! No one earns a point!")
+            print("It's a Tie! No one earns a point!")
             return True
 
 def start_game():
@@ -135,14 +136,14 @@ def start_game():
             play_again = input("Do you want to play again? Y for yes, everything else for no: ").lower()
             if play_again != "y":
                 break
-    print(f"\nGame ended. Final Score:")
+    print(f"\nGame ended. Final score:")
     print(f"{p1_name}: {game_score[0]} Points\n{p2_name}: {game_score[1]} Points")
     if game_score[0] > game_score[1]:
-        print(f"\n{p1_name} is the Winner!")
+        print(f"\n{p1_name} is the winner!")
     elif game_score[1] > game_score[0]:
-        print(f"\n{p2_name} is the Winner!")
+        print(f"\n{p2_name} is the winner!")
     else:
-        print("\nTie! No one Won!")
+        print("\nTie! No one won!")
 
 def choose_symbol():
     player1_symbol = input(f"\n{p1_name}, Choose Symbol. X or O \nAny other input will choose your symbol at random: ").upper()
@@ -161,21 +162,40 @@ def choose_name():
     global p1_name
     global p2_name
     global man_v_machine
-    p1_name = input("Player 1 Whats your Name? ")
     while True:
         try:
-            man_v_machine = input("Would you like to play with another player or against the pc? P or PC only: ").upper()
-            if man_v_machine == 'P':
-                p2_name = input("Player 2 Whats your Name? ")
+            p1_name = input("\nPlayer 1 what's your Name? ")
+            if not p1_name.isalpha():
+                raise Exception("Make sure the name consists of letters only!")
+            else:
                 break
+        except Exception as e:
+            print("\nAn error has occurred!")
+            print(f"{e}\n")
+
+    while True:
+        try:
+            man_v_machine = input(f"Hey {p1_name}!\nWould you like to play with another player or against the pc?\nInput 'P' or 'PC' only: ").upper()
+            if man_v_machine == 'P':
+                while True:
+                    p2_name = input("\nPlayer 2 what's your Name? ")
+                    try:
+                        if p2_name.isalpha():
+                            break
+                        else:
+                            raise
+                    except:
+                        print("Make sure the name consists of letters only!")
+
             elif man_v_machine == 'PC':
                 p2_name = "CPU"
                 break
             else:
                 raise Exception("Invalid Input")
         except Exception as e:
-            print("\nAn error has occured!")
+            print("\nAn error has occurred!")
             print(f"{e}\n")
+        break
 
 if __name__ == '__main__':
     start_game()
