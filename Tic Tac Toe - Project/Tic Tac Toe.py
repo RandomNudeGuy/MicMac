@@ -1,6 +1,5 @@
 import random
 
-
 def switch_players(turn):
     if turn[0] == True and turn[1] == False:
         turn = [False, True]
@@ -34,8 +33,15 @@ def pick_place(board, turn, P1, P2):
                     break
                 try:
                     print(f"\nTurn is: {player_turn}")
-                    chosen_index = int(input("Choose a place 1-9: ")) - 1
-                    if 1 <= chosen_index + 1 <= 9:
+                    chosen_index = input("Choose a place 1-9\n'Q' to quit: ").upper()
+                    if chosen_index.isdigit():
+                        chosen_index_int = int(chosen_index)
+                        chosen_index_int -= 1
+                    elif chosen_index == "Q":
+                        return "Q"
+                    else:
+                        raise Exception("Make sure to only give numbers between 1 - 9!")
+                    if 1 <= chosen_index_int + 1 <= 9:
                         break
                     else:
                         raise Exception("Make sure to only give numbers between 1 - 9!")
@@ -46,7 +52,7 @@ def pick_place(board, turn, P1, P2):
                 continue
             else:
                 for index, value in enumerate(board):
-                    if index == chosen_index and value == ' ':
+                    if index == chosen_index_int and value == ' ':
                         if player_turn == p1_name:
                             board[index] = P1
                             is_win_or_tie = condition_win_or_tie(board)
@@ -55,7 +61,7 @@ def pick_place(board, turn, P1, P2):
                             board[index] = P2
                             is_win_or_tie = condition_win_or_tie(board)
                             turn = switch_players(turn)
-                    elif index == chosen_index and value != ' ':
+                    elif index == chosen_index_int and value != ' ':
                         raise Exception("Place is already taken!")
         except Exception as e:
             print("\nAn error has occurred!")
@@ -97,13 +103,11 @@ def condition_win_or_tie(board):
         if board[index1] == board[index2] == board[index3] and board[index1] != ' ':
             # if index1
             if board[index1] == 'X':
-                board[index1] = 'X̶'
-                board[index2] = 'X̶'
-                board[index3] = 'X̶'
+                mark = 'X̶'
+                board[index1] = board[index2] = board[index3] = mark
             else:
-                board[index1] = 'O̶'
-                board[index2] = 'O̶'
-                board[index3] = 'O̶'
+                mark = 'O̶'
+                board[index1] = board[index2] = board[index3] = mark
             return "W"
 
     counter = 0 #check tie
@@ -132,6 +136,8 @@ def play_game():
         elif user_choise == "Tie":
             print("It's a Tie! No one earns a point!")
             return True
+        elif user_choise == "Q":
+            return True
 
 def start_game():
     print("Welcome to Tic Tac Toe!")
@@ -141,7 +147,7 @@ def start_game():
     while True:
         finished_game = play_game()
         if finished_game:#checks if game is finished or not
-            play_again = input("Do you want to play again? Y for yes, everything else for no: ").lower()
+            play_again = input("\nDo you want to play again? Y for yes, everything else for no: ").lower()
             if play_again != "y":
                 break
     print(f"\nGame ended. Final score:")
@@ -158,13 +164,12 @@ def choose_symbol():
     if (player1_symbol == 'X') or (player1_symbol == 'O'):
         return player1_symbol
     else:
-        random_num = random.randint(1,2)
-        if random_num == 1:
+        if random.randint(1,2) == 1:
             player1_symbol = 'X'
-            return player1_symbol
-        elif random_num == 2:
+        else:
             player1_symbol = 'O'
-            return player1_symbol
+        print("\nInvalid input. A symbol has been chosen for you.")
+        return player1_symbol
 
 def choose_name():
     global p1_name
