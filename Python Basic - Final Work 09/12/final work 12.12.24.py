@@ -537,66 +537,66 @@
 # Validation for age input → int type between 1 - 130.
 # Validation for email input → string type with ‘@’ inside.
 # 
-# 
-# def full_name_val():
-#     validation = False
-#     while validation == False:
-#         full_name = input("Whats your full name?: ")
-#         if len(full_name.split(" ")) >= 2:
-#             name_list = full_name.split(" ")
-#             for name in name_list:
-#                 if name != "" and name.isalpha():
-#                     validation = True
-#                 else:
-#                     validation = False
-#                     print("Make sure your name includes first name and last name with only english letters!")
-#                     break
-#         else:
-#             print("Make sure your name includes first name and last name with only english letters!")
-# 
-#     return full_name
-# 
-# def age_val():
-#     validation = False
-#     while validation == False:
-#         age = input("Whats your age?: ")
-#         if age.isdigit():
-#             age = int(age)
-#             if 1 <= age <= 130:
-#                 validation = True
-#             else:
-#                 print("Make sure your age is between 1 and 130")
-#         else:
-#             print("Make sure your input is only digits!")
-#     return age
-# 
-# def email_val():
-#     validate = False
-#     while validate == False:
-#         email = input("Whats your email?: ")
-#         if "@" in email:
-#             if len(email.split("@")) == 2:
-#                 if email.split("@")[1].endswith(".com"):
-#                     if email.split("@")[0] != "":
-#                         domain = email.split("@")[1]
-#                         if len(domain.split(".")) == 2 and domain.split(".")[0] != "":
-#                             validate = True
-#                         else:
-#                             print("Invalid Email Address! Make sure there is a domain!")
-#                     else:
-#                         print("Invalid Email Address! Make sure there is a prefix!")
-# 
-#                 else:
-#                     print("Invalid Email Address! Make sure there is '.com' at the end!")
-#             else:
-#                 print("Invalid Email Address! Make sure there is only one '@'!")
-#         else:
-#             print("Invalid Email Address! No '@' in address!")
-#     return email
-# 
-# 
-# if __name__ == '__main__':
-#     full_name_val()
-#     age_val()
-#     email_val()
-# 
+
+def full_name_val():
+    validation = False
+    while validation == False:
+        full_name = input("Whats your full name?: ")
+        if len(full_name.split(" ")) >= 2:
+            name_list = full_name.split(" ")
+            for name in name_list:
+                if name != "" and name.isalpha():
+                    validation = True
+                else:
+                    validation = False
+                    print("Make sure your name includes first name and last name with only english letters!")
+                    break
+        else:
+            print("Make sure your name includes first name and last name with only english letters!")
+
+    return full_name
+
+def age_val():
+    validation = False
+    while validation == False:
+        age = input("Whats your age?: ")
+        if age.isdigit():
+            age = int(age)
+            if 1 <= age <= 130:
+                validation = True
+            else:
+                print("Make sure your age is between 1 and 130")
+        else:
+            print("Make sure your input is only digits!")
+    return age
+
+def email_val():
+    validate = False
+    while validate == False:
+        email = input("Whats your email?: ")
+        if "@" in email:
+            if len(email.split("@")) == 2:
+                if email.split("@")[1].endswith(".com"):
+                    if email.split("@")[0] != "":
+                        domain = email.split("@")[1]
+                        if len(domain.split(".")) == 2 and domain.split(".")[0] != "":
+                            validate = True
+                        else:
+                            print("Invalid Email Address! Make sure there is a domain!")
+                    else:
+                        print("Invalid Email Address! Make sure there is a prefix!")
+
+                else:
+                    print("Invalid Email Address! Make sure there is '.com' at the end!")
+            else:
+                print("Invalid Email Address! Make sure there is only one '@'!")
+        else:
+            print("Invalid Email Address! No '@' in address!")
+    return email
+
+
+if __name__ == '__main__':
+    full_name_val()
+    age_val()
+    email_val()
+

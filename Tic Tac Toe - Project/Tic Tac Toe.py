@@ -49,11 +49,11 @@ def pick_place(board, turn, P1, P2):
                     if index == chosen_index and value == ' ':
                         if player_turn == p1_name:
                             board[index] = P1
-                            is_win_or_tie = check_win_or_tie(board)
+                            is_win_or_tie = condition_win_or_tie(board)
                             turn = switch_players(turn)
                         elif player_turn == p2_name:
                             board[index] = P2
-                            is_win_or_tie = check_win_or_tie(board)
+                            is_win_or_tie = condition_win_or_tie(board)
                             turn = switch_players(turn)
                     elif index == chosen_index and value != ' ':
                         raise Exception("Place is already taken!")
@@ -81,7 +81,7 @@ def print_board(board):
             if (index + 1) % 3 == 0:
                 print()
 
-def check_win_or_tie(board):
+def condition_win_or_tie(board):
     win_conditions = [
         (0, 1, 2),
         (3, 4, 5),
@@ -96,6 +96,14 @@ def check_win_or_tie(board):
     for index1, index2, index3 in win_conditions:#check win
         if board[index1] == board[index2] == board[index3] and board[index1] != ' ':
             # if index1
+            if board[index1] == 'X':
+                board[index1] = 'X̶'
+                board[index2] = 'X̶'
+                board[index3] = 'X̶'
+            else:
+                board[index1] = 'O̶'
+                board[index2] = 'O̶'
+                board[index3] = 'O̶'
             return "W"
 
     counter = 0 #check tie
@@ -175,7 +183,7 @@ def choose_name():
 
     while True:
         try:
-            man_v_machine = input(f"Hey {p1_name}!\nWould you like to play with another player or against the pc?\nInput 'P' or 'PC' only: ").upper()
+            man_v_machine = input(f"Hey {p1_name}!\nWould you like to play with another player or against the pc?\nInput 'P' for player or 'PC' only: ").upper()
             if man_v_machine == 'P':
                 while True:
                     p2_name = input("\nPlayer 2 what's your Name? ")
