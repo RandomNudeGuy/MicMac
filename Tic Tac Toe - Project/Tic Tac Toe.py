@@ -1,19 +1,15 @@
 import random
 
 def switch_players(turn):
-    if turn[0] == True and turn[1] == False:
-        turn = [False, True]
-        return turn
-    elif turn[0] == False and turn[1] == True:
-        turn = [True, False]
-        return turn
+    turn[0], turn[1] = turn[1], turn[0]
+    return turn
 
 def cpu_choice(board):
     while True:
         index_random = random.randint(1,9)
         for index, value in enumerate(board):
-            if index == index_random and value == ' ':
-                return index_random + 1
+            if (index + 1) == index_random and value == ' ':
+                return index_random - 1
 
 def pick_place(board, turn, P1, P2):
     while True:
@@ -28,8 +24,7 @@ def pick_place(board, turn, P1, P2):
             while True: #loop to check valid input
                 if (man_v_machine == 'PC') and (turn == [False, True]):
                     board[cpu_choice(board)] = P2
-                    is_win_or_tie = check_win_or_tie(board)
-                    turn = switch_players(turn)
+                    is_win_or_tie = condition_win_or_tie(board)
                     break
                 try:
                     print(f"\nTurn is: {player_turn}")
@@ -49,7 +44,9 @@ def pick_place(board, turn, P1, P2):
                     print("\nAn error has occurred!")
                     print("\nMake sure to only give numbers between 1 - 9!")
             if (man_v_machine == 'PC') and (turn == [False, True]):
-                continue
+                turn = switch_players(turn)
+                check_win_or_tie = check_win_or_tie(is_win_or_tie)
+                return
             else:
                 for index, value in enumerate(board):
                     if index == chosen_index_int and value == ' ':
@@ -61,24 +58,32 @@ def pick_place(board, turn, P1, P2):
                             board[index] = P2
                             is_win_or_tie = condition_win_or_tie(board)
                             turn = switch_players(turn)
+                        check_win_or_tie = check_win_or_tie(is_win_or_tie)
                     elif index == chosen_index_int and value != ' ':
                         raise Exception("Place is already taken!")
         except Exception as e:
             print("\nAn error has occurred!")
             print(e)
             print()
-        if is_win_or_tie == "W":
-            global player_won
-            player_won = player_turn
-            if player_won == p1_name:
-                game_score[0] += 1
-            elif player_won == p2_name:
-                game_score[1] += 1
-            print_board(board)
-            return "Win"
-        elif is_win_or_tie == "T":
-            print_board(board)
-            return "Tie"
+        if check_win_or_tie != "NoWin":
+            return check_win_or_tie
+
+def check_win_or_tie(is_win_or_tie):
+    if is_win_or_tie == "W":
+        global player_won
+        player_won = player_turn
+        if player_won == p1_name:
+            game_score[0] += 1
+        elif player_won == p2_name:
+            game_score[1] += 1
+        print_board(board)
+        return "Win"
+    elif is_win_or_tie == "T":
+        print_board(board)
+        return "Tie"
+    elif is_win_or_tie == 0:
+        return "NoWin"
+
 
 def print_board(board):
     print("\nBoard:")
@@ -116,6 +121,7 @@ def condition_win_or_tie(board):
             counter += 1
     if counter == 9:
         return "T"
+    return 0
 
 def play_game():
     board_list = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '] #the board
@@ -185,14 +191,16 @@ def choose_name():
         except Exception as e:
             print("\nAn error has occurred!")
             print(f"{e}\n")
-
+    print(f"Hey {p1_name}!\n")
     while True:
+        valid_p2_name = False
         try:
-            man_v_machine = input(f"Hey {p1_name}!\nWould you like to play with another player or against the pc?\nInput 'P' for player or 'PC' only: ").upper()
+            man_v_machine = input(f"Would you like to play with another player or against the pc?\nInput 'P' for player or 'PC' only: ").upper()
             if man_v_machine == 'P':
                 while True:
                     p2_name = input("\nPlayer 2 what's your Name? ")
                     try:
+                        valid_p2_name = False
                         if p2_name.isalpha():
                             break
                         else:
@@ -208,7 +216,8 @@ def choose_name():
         except Exception as e:
             print("\nAn error has occurred!")
             print(f"{e}\n")
-        break
+        if valid_p2_name:
+            break
 
 if __name__ == '__main__':
     start_game()
