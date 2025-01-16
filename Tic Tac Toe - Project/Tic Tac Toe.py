@@ -48,9 +48,9 @@ def pick_place(board, turn, P1, P2):
                     print("\nAn error has occurred!")
                     print("\nMake sure to only give numbers between 1 - 9!")
             if (man_v_machine == 'PC') and (turn == [False, True]):
-                turn = switch_players(turn, is_win_or_tie)
                 game_status = check_win_or_tie(is_win_or_tie, player_turn, board)
-                return
+                turn = switch_players(turn, is_win_or_tie)
+                return game_status
             else:
                 for index, value in enumerate(board):
                     if index == chosen_index_int and value == ' ':
@@ -87,7 +87,6 @@ def check_win_or_tie(is_win_or_tie, player_turn, board):
         return "Tie"
     elif is_win_or_tie == 0:
         return "NoWin"
-
 
 def print_board(board):
     print("\nBoard:")
@@ -206,6 +205,7 @@ def choose_name():
                     try:
                         valid_p2_name = False
                         if p2_name.isalpha():
+                            valid_p2_name = True
                             break
                         else:
                             raise
@@ -222,7 +222,5 @@ def choose_name():
             print(f"{e}\n")
         if valid_p2_name:
             break
-
 if __name__ == '__main__':
     start_game()
-
