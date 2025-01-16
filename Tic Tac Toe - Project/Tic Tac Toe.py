@@ -37,7 +37,6 @@ def condition_win_or_tie(board):
 
     for index1, index2, index3 in win_conditions:#check win
         if board[index1] == board[index2] == board[index3] and board[index1] != ' ':
-            # if index1
             if board[index1] == 'X':
                 mark = 'X̶'
                 board[index1] = board[index2] = board[index3] = mark
@@ -221,8 +220,6 @@ def start_game():
         print(f"\n{p2_name} is the winner!")
     else:
         print("\nTie! No one won!")
-
-
 
 if __name__ == '__main__':
     start_game()
