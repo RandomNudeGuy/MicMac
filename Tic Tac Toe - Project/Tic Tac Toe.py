@@ -1,8 +1,11 @@
 import random
 
-def switch_players(turn):
-    turn[0], turn[1] = turn[1], turn[0]
-    return turn
+def switch_players(turn, is_win_or_tie):
+    if is_win_or_tie == "W":
+        return turn
+    else:
+        turn[0], turn[1] = turn[1], turn[0]
+        return turn
 
 def cpu_choice(board):
     while True:
@@ -12,6 +15,7 @@ def cpu_choice(board):
                 return index_random - 1
 
 def pick_place(board, turn, P1, P2):
+    game_status = "NoWin"
     while True:
         if turn[0]: # checks which player turn is it
             player_turn = p1_name
@@ -44,8 +48,8 @@ def pick_place(board, turn, P1, P2):
                     print("\nAn error has occurred!")
                     print("\nMake sure to only give numbers between 1 - 9!")
             if (man_v_machine == 'PC') and (turn == [False, True]):
-                turn = switch_players(turn)
-                check_win_or_tie = check_win_or_tie(is_win_or_tie)
+                turn = switch_players(turn, is_win_or_tie)
+                game_status = check_win_or_tie(is_win_or_tie, player_turn, board)
                 return
             else:
                 for index, value in enumerate(board):
@@ -53,22 +57,22 @@ def pick_place(board, turn, P1, P2):
                         if player_turn == p1_name:
                             board[index] = P1
                             is_win_or_tie = condition_win_or_tie(board)
-                            turn = switch_players(turn)
+                            turn = switch_players(turn, is_win_or_tie)
                         elif player_turn == p2_name:
                             board[index] = P2
                             is_win_or_tie = condition_win_or_tie(board)
-                            turn = switch_players(turn)
-                        check_win_or_tie = check_win_or_tie(is_win_or_tie)
+                            turn = switch_players(turn, is_win_or_tie)
+                        game_status = check_win_or_tie(is_win_or_tie, player_turn, board)
                     elif index == chosen_index_int and value != ' ':
                         raise Exception("Place is already taken!")
         except Exception as e:
             print("\nAn error has occurred!")
             print(e)
             print()
-        if check_win_or_tie != "NoWin":
-            return check_win_or_tie
+        if game_status != "NoWin":
+            return game_status
 
-def check_win_or_tie(is_win_or_tie):
+def check_win_or_tie(is_win_or_tie, player_turn, board):
     if is_win_or_tie == "W":
         global player_won
         player_won = player_turn
