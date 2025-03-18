@@ -1,7 +1,7 @@
 from person import Person
 from person import Animal
 from person import Rectangle
-import pandas as pd
+from person import Employee
 
 if __name__ == '__main__':
     student1 = Person('Jonathan', 'Tzur', 'Male', 22, 171, None)
@@ -43,4 +43,11 @@ if __name__ == '__main__':
     rectange1 = Rectangle(5, 4)
     print(rectange1.getArea())
 
+    employee1 = Employee('Robert', 1994, 11000, '64C- WallsStreat')
+    employee2 = Employee('Sam', 2000, 11000, '68D- WallsStreat')
+    employee3 = Employee('John', 1999, 11000, '26B- WallsStreat')
+
+    employee1.print()
+    employee2.print()
+    employee3.print()
 

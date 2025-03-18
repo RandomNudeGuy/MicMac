@@ -142,3 +142,14 @@ class Rectangle:
 
     def getArea(self):
         return self.__height * self.__width
+
+class Employee:
+    def __init__(self, name, year_of_joining, salary, address):
+        self.__name= name
+        self.__year_of_joining = year_of_joining
+        self.__salary = salary
+        self.__address = address
+
+
+    def print(self):
+        print(f'name: {self.__name}. year of joining: {self.__year_of_joining}. salary: {self.__salary}. address: {self.__address}')
