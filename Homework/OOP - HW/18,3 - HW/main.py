@@ -2,6 +2,8 @@ from person import Person
 from person import Animal
 from person import Rectangle
 from person import Employee
+from person import Role
+from person import Company
 
 if __name__ == '__main__':
     student1 = Person('Jonathan', 'Tzur', 'Male', 22, 171, None)
@@ -43,11 +45,18 @@ if __name__ == '__main__':
     rectange1 = Rectangle(5, 4)
     print(rectange1.getArea())
 
-    employee1 = Employee('Robert', 1994, 11000, '64C- WallsStreat')
-    employee2 = Employee('Sam', 2000, 11000, '68D- WallsStreat')
-    employee3 = Employee('John', 1999, 11000, '26B- WallsStreat')
+    employee1 = Employee('Robert', 1994, 12000, '64C- WallsStreat',1000, Role("Managaer", "CEO", 2))
+    employee2 = Employee('Sam', 2000, 11000, '68D- WallsStreat', 1000, Role("Managaer", "CEO", 2))
+    # employee3 = Employee('John', 1999, 11000, '26B- WallsStreat', 1000)
 
-    employee1.print()
-    employee2.print()
-    employee3.print()
+    # employee1.print()
+    # employee2.print()
+    # employee3.print()
+
+    company1 = Company()
+    company1.add_employee(employee1)
+    company1.add_employee(employee2)
+
+    employee1.get_bonus()
+    print(company1.annual_expense())
 
