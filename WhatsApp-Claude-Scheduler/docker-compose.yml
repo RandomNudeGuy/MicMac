@@ -1,0 +1,28 @@
+services:
+  openwa:
+    image: ghcr.io/rmyndharis/openwa:latest
+    container_name: openwa
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:2785:2785"
+    environment:
+      # Master API key — must match OPENWA_API_KEY in your .env
+      MASTER_KEY: ${OPENWA_API_KEY:-change-me}
+      # Webhook fires to this middleware server on your Mac
+      WEBHOOK_URL: http://host.docker.internal:3000/webhook
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-change-me-to-a-random-string}
+      WEBHOOK_EVENTS: message.received,session.status
+      WEBHOOK_MAX_RETRIES: "3"
+      # SQLite — simplest for local use
+      DATABASE_TYPE: sqlite
+      # Store session data between restarts
+      SESSION_STORAGE: local
+    volumes:
+      - openwa_data:/app/data
+      - openwa_sessions:/app/sessions
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  openwa_data:
+  openwa_sessions:
